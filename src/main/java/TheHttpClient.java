@@ -13,7 +13,7 @@ public class TheHttpClient {
     public TheHttpClient(String baseUrl) {
         this.baseUrl = baseUrl;
         client = HttpClient.newHttpClient();
-        token = "Bearer " + System.getenv().get("token");
+        token = System.getenv().get("token");
     }
 
     public HttpResponse<String> post(String userJson) {

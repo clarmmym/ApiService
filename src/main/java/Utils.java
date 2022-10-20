@@ -9,31 +9,43 @@ import java.util.List;
 
 public class Utils {
     public static String userToJsonUsesObjectMapper(User user) {
-        String jsonObj;
-
         try {
-            jsonObj = new ObjectMapper().writeValueAsString(user);
+            return new ObjectMapper().writeValueAsString(user);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            System.out.println("Cannot convert user to json. Message: " + e.getMessage());
+            System.exit(0);
         }
-
-        return jsonObj;
+        return null;
     }
 
     public static String userToJsonUsesJsonObject(User user) {
         return new JSONObject(user).toString();
     }
 
-    public static List<User> jsonToUserUsesObjectMapper(String json) {
+    public static List<User> jsonToUsersUsesObjectMapper(String json) {
         try {
-            return new ObjectMapper().readValue(json, new TypeReference<>() {});
+            return new ObjectMapper().readValue(json, new TypeReference<>() {
+            });
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            System.out.println("Cannot convert user to json. Message: " + e.getMessage());
+            System.exit(0);
         }
+        return null;
     }
 
-    public static List<User> jsonToUserUsesJsonObject(String js) {
-        JSONArray jsnArray = new JSONArray(js);
+    public static User jsonToUserUsesObjectMapper(String json) {
+        try {
+            return new ObjectMapper().readValue(json, new TypeReference<>() {
+            });
+        } catch (JsonProcessingException e) {
+            System.out.println("Cannot convert user to json. Message: " + e.getMessage());
+            System.exit(0);
+        }
+        return null;
+    }
+
+    public static List<User> jsonToUserUsesJsonObject(String json) {
+        JSONArray jsnArray = new JSONArray(json);
         List<User> userList = new ArrayList<>();
 
         for (var jsObj : jsnArray) {
