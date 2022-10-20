@@ -8,7 +8,10 @@ public class Main {
         User user = new User("Tenali Ramakrishna", "tenalil.ramakrishna@15ce.com", "male", "active");
         System.out.println(user);
 
-        TheHttpClient httpClient = new TheHttpClient(args[0]);
+        String baseUrl = args[0];
+        String token = System.getenv().get("token");
+
+        TheHttpClient httpClient = new TheHttpClient(baseUrl, token);
         HttpResponse<String> response;
 
         // Create record on the remote API with 'Post' uses object mapper

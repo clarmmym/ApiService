@@ -10,10 +10,10 @@ public class TheHttpClient {
     private final HttpClient client;
     private final String token;
 
-    public TheHttpClient(String baseUrl) {
+    public TheHttpClient(String baseUrl, String token) {
         this.baseUrl = baseUrl;
         client = HttpClient.newHttpClient();
-        token = System.getenv().get("token");
+        this.token = "Bearer " + token;
     }
 
     public HttpResponse<String> post(String userJson) {
